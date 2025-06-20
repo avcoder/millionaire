@@ -23,6 +23,12 @@ export default {
     },
     nextQ() {
       this.qIndex += 1;
+      if (this.qIndex >= this.questions.length) {
+        console.log("you Win!");
+        this.isGameOn = false;
+        return;
+      }
+
       const currentQ = this.questions[this.qIndex];
       this.correctAnswerIndex = getRandomInt();
       console.log(this.correctAnswerIndex);
