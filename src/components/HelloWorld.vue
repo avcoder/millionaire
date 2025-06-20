@@ -1,21 +1,40 @@
 <script>
+import { getRandomInt } from "./utils.ts";
+
 export default {
   props: ["api", "money", "questions"],
   data() {
     return {
       isGameOn: false,
+      qIndex: 0,
+      correctAnswerIndex: 0,
+      correctAnswer: "",
+      possibleAnswers: [],
+      currentQ: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+      answer4: "",
     };
   },
   methods: {
     toggleGamePlay() {
       this.isGameOn = !this.isGameOn;
     },
+    beginGame() {
+      this.toggleGamePlay();
+      this.displayQ();
+    },
+    displayQ() {
+      console.log("questions: ", this.questions);
+      this.currentQ = this.questions[this.qIndex].question;
+    },
   },
 };
 </script>
 
 <template>
-  <button @click="toggleGamePlay" v-if="!isGameOn">Play</button>
+  <button @click="beginGame" v-if="!isGameOn">Play</button>
   <div class="app" v-else>
     <main>
       <div class="header">
@@ -105,7 +124,7 @@ main {
   grid-area: question;
   justify-self: center;
   border: 1px solid white;
-  padding: 70px 30%;
+  padding: 75px;
   /* taken from https://uigradients.com/#Lawrencium */
   background: #0f0c29;
   /* fallback for old browsers */
