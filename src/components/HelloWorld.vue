@@ -8,7 +8,6 @@ export default {
       isGameOn: false,
       qIndex: -1,
       correctAnswerIndex: 0,
-      correctAnswer: "",
       possibleAnswers: [],
       currentQ: "",
     };
