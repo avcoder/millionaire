@@ -1,5 +1,5 @@
 <script>
-import { getRandomInt } from "./utils.ts";
+import { getRandomInt, decodeQ } from "./utils.ts";
 
 export default {
   props: ["api", "money", "questions"],
@@ -27,7 +27,8 @@ export default {
     },
     displayQ() {
       console.log("questions: ", this.questions);
-      this.currentQ = this.questions[this.qIndex].question;
+      const currentQuestion = this.questions[this.qIndex].question;
+      this.currentQ = decodeQ(currentQuestion);
     },
   },
 };
@@ -40,7 +41,7 @@ export default {
       <div class="header">
         <!-- Place to place messages or voting results etc -->
       </div>
-      <h1 class="question" v-html="currentQ"></h1>
+      <h1 class="question">{{ currentQ }}</h1>
 
       <button id="a" class="item-a">
         <span>A: </span><span>{{ answer1 }}</span>
@@ -131,6 +132,7 @@ main {
   background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  min-width: 800px;
 }
 
 .active {
