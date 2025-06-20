@@ -1,16 +1,22 @@
 <script>
 export default {
-  props: ["api", "money"],
+  props: ["api", "money", "questions"],
   data() {
     return {
-      questions: [],
+      isGameOn: false,
     };
+  },
+  methods: {
+    toggleGamePlay() {
+      this.isGameOn = !this.isGameOn;
+    },
   },
 };
 </script>
 
 <template>
-  <div class="app">
+  <button @click="toggleGamePlay" v-if="!isGameOn">Play</button>
+  <div class="app" v-else>
     <main>
       <div class="header">
         <!-- Place to place messages or voting results etc -->
@@ -18,16 +24,16 @@ export default {
       <h1 class="question" v-html="currentQ"></h1>
 
       <button id="a" class="item-a">
-        <span>A: </span><span>Possible Answer #1</span>
+        <span>A: </span><span>{{ answer1 }}</span>
       </button>
       <button id="b" class="item-b">
-        <span>B: </span><span>Possible Answer #2</span>
+        <span>B: </span><span>{{ answer2 }}</span>
       </button>
       <button id="c" class="item-c">
-        <span>C: </span><span>Possible Answer #3</span>
+        <span>C: </span><span>{{ answer3 }}</span>
       </button>
       <button id="d" class="item-d">
-        <span>D: </span><span>Possible Answer #4</span>
+        <span>D: </span><span>{{ answer4 }}</span>
       </button>
     </main>
 
@@ -45,7 +51,7 @@ export default {
       </section>
 
       <ul>
-        <li>15 - $100</li>
+        <li v-for="{ level, amount } in money">{{ level }} - ${{ amount }}</li>
       </ul>
     </aside>
   </div>
@@ -53,7 +59,7 @@ export default {
 
 <style scoped>
 section {
-  width: 400px;
+  min-width: 250px;
 }
 
 .app {
