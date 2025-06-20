@@ -6,15 +6,11 @@ export default {
   data() {
     return {
       isGameOn: false,
-      qIndex: 0,
+      qIndex: -1,
       correctAnswerIndex: 0,
       correctAnswer: "",
       possibleAnswers: [],
       currentQ: "",
-      answer1: "",
-      answer2: "",
-      answer3: "",
-      answer4: "",
     };
   },
   methods: {
@@ -23,12 +19,29 @@ export default {
     },
     beginGame() {
       this.toggleGamePlay();
-      this.displayQ();
+      this.nextQ();
     },
-    displayQ() {
-      console.log("questions: ", this.questions);
-      const currentQuestion = this.questions[this.qIndex].question;
-      this.currentQ = decodeQ(currentQuestion);
+    nextQ() {
+      this.qIndex += 1;
+      const currentQ = this.questions[this.qIndex];
+      this.correctAnswerIndex = getRandomInt();
+      console.log(this.correctAnswerIndex);
+      this.possibleAnswers = [...currentQ.incorrect_answers].map((answer) =>
+        decodeQ(answer)
+      );
+      this.possibleAnswers.splice(
+        this.correctAnswerIndex,
+        0,
+        decodeQ(currentQ.correct_answer)
+      );
+      this.currentQ = decodeQ(currentQ.question);
+    },
+    checkAnswer(i) {
+      if (i === this.correctAnswerIndex) {
+        this.nextQ();
+      } else {
+        this.isGameOn = false;
+      }
     },
   },
 };
@@ -43,17 +56,17 @@ export default {
       </div>
       <h1 class="question">{{ currentQ }}</h1>
 
-      <button id="a" class="item-a">
-        <span>A: </span><span>{{ answer1 }}</span>
+      <button id="a" class="item-a" @click="checkAnswer(0)">
+        <span>A: </span><span>{{ possibleAnswers[0] }}</span>
       </button>
-      <button id="b" class="item-b">
-        <span>B: </span><span>{{ answer2 }}</span>
+      <button id="b" class="item-b" @click="checkAnswer(1)">
+        <span>B: </span><span>{{ possibleAnswers[1] }}</span>
       </button>
-      <button id="c" class="item-c">
-        <span>C: </span><span>{{ answer3 }}</span>
+      <button id="c" class="item-c" @click="checkAnswer(2)">
+        <span>C: </span><span>{{ possibleAnswers[2] }}</span>
       </button>
-      <button id="d" class="item-d">
-        <span>D: </span><span>{{ answer4 }}</span>
+      <button id="d" class="item-d" @click="checkAnswer(3)">
+        <span>D: </span><span>{{ possibleAnswers[3] }}</span>
       </button>
     </main>
 
@@ -77,154 +90,4 @@ export default {
   </div>
 </template>
 
-<style scoped>
-section {
-  min-width: 250px;
-}
-
-.app {
-  display: flex;
-}
-
-.app ul {
-  list-style-type: none;
-  color: #cad622;
-  font-size: 24px;
-  padding-left: 30%;
-}
-
-.app li {
-  margin-top: 10px;
-}
-.app li:nth-child(1),
-li:nth-child(6),
-li:nth-child(11) {
-  color: #fff;
-}
-.app li span {
-  margin-left: 30px;
-}
-
-main {
-  display: grid;
-  grid-template-columns: 500px 500px 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
-  grid-template-areas:
-    "header header header"
-    "question question sidebar"
-    "itema itemb sidebar"
-    "itemc itemd sidebar";
-}
-
-.header {
-}
-
-.question {
-  grid-area: question;
-  justify-self: center;
-  border: 1px solid white;
-  padding: 75px;
-  /* taken from https://uigradients.com/#Lawrencium */
-  background: #0f0c29;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  min-width: 800px;
-}
-
-.active {
-  border-top: 1px solid skyblue;
-  border-bottom: 1px solid skyblue;
-}
-
-main button {
-  cursor: pointer;
-  display: block;
-  justify-self: center;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  width: 95%;
-  padding: 40px 0;
-  color: #fff;
-  /* taken from https://uigradients.com/#Lawrencium */
-  background: #0f0c29;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
-}
-
-main button span {
-  color: #fff;
-}
-
-main button.item-a {
-  grid-area: itema;
-}
-main button.item-b {
-  grid-area: itemb;
-}
-main button.item-c {
-  grid-area: itemc;
-}
-main button.item-d {
-  grid-area: itemd;
-}
-.final_answer {
-  background: #709634 !important;
-}
-.invisible {
-  visibility: hidden !important;
-}
-.ghost {
-  display: none;
-}
-
-aside {
-  grid-area: sidebar;
-  flex-grow: 1;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-aside i {
-  font-size: 80px;
-}
-aside section {
-  text-align: center;
-}
-aside button {
-  cursor: pointer;
-  border-radius: 10px 20px;
-  margin: 10px;
-  color: #fff;
-
-  /* taken from https://uigradients.com/#Lawrencium */
-  background: #000428; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #004e92,
-    #000428
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #004e92, #000428);
-}
-
-.settings {
-  margin-top: 100px;
-}
-.settings button {
-  background: grey;
-  margin: 3px;
-  border-radius: 0 0 0 0;
-}
-.settings button i {
-  font-size: 24px;
-}
-
-.header h1 {
-  text-align: center;
-  font-size: 64px;
-}
-</style>
+<style scoped></style>
