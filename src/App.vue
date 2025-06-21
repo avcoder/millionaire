@@ -182,14 +182,14 @@ const money = [
   { level: "15", amount: "100" },
 ];
 
-async function getQuestions() {
-  // console.log("fetching");
-  // const res = await fetch(api);
-  // const data = await res.json();
-  // console.log("data ", data);
-}
+// async function getQuestions() {
+// console.log("fetching");
+// const res = await fetch(api);
+// const data = await res.json();
+// console.log("data ", data);
+// }
 
-getQuestions();
+// getQuestions();
 </script>
 
 <template>
