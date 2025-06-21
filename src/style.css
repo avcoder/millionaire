@@ -34,25 +34,8 @@ main {
   grid-template-areas:
     "header header header"
     "question question sidebar"
-    "itema itemb sidebar"
-    "itemc itemd sidebar";
-}
-
-.header {
-}
-
-.question {
-  grid-area: question;
-  justify-self: center;
-  border: 1px solid white;
-  padding: 75px;
-  /* taken from https://uigradients.com/#Lawrencium */
-  background: #0f0c29;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  min-width: 800px;
+    "grid grid sidebar"
+    "grid grid sidebar";
 }
 
 .active {
@@ -60,39 +43,15 @@ main {
   border-bottom: 1px solid skyblue;
 }
 
-main button {
-  cursor: pointer;
-  display: block;
-  justify-self: center;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  width: 95%;
-  padding: 40px 0;
-  color: #fff;
-  /* taken from https://uigradients.com/#Lawrencium */
-  background: #0f0c29;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+.grid {
+  grid-area: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: space-evenly;
+  gap: 20px;
 }
 
-main button span {
-  color: #fff;
-}
-
-main button.item-a {
-  grid-area: itema;
-}
-main button.item-b {
-  grid-area: itemb;
-}
-main button.item-c {
-  grid-area: itemc;
-}
-main button.item-d {
-  grid-area: itemd;
-}
 .final_answer {
   background: #709634 !important;
 }

@@ -1,7 +1,15 @@
 <script>
 import { getRandomInt, decodeQ } from "./utils.ts";
 
+// components
+import Question from "./Question.vue";
+import Answer from "./Answer.vue";
+
 export default {
+  components: {
+    Question,
+    Answer,
+  },
   props: ["api", "money", "questions"],
   data() {
     return {
@@ -56,23 +64,30 @@ export default {
   <button @click="beginGame" v-if="!isGameOn">Play</button>
   <div class="app" v-else>
     <main>
-      <div class="header">
-        <!-- Place to place messages or voting results etc -->
-      </div>
-      <h1 class="question">{{ currentQ }}</h1>
+      <Question :question="currentQ" />
 
-      <button id="a" class="item-a" @click="checkAnswer(0)">
-        <span>A: </span><span>{{ possibleAnswers[0] }}</span>
-      </button>
-      <button id="b" class="item-b" @click="checkAnswer(1)">
-        <span>B: </span><span>{{ possibleAnswers[1] }}</span>
-      </button>
-      <button id="c" class="item-c" @click="checkAnswer(2)">
-        <span>C: </span><span>{{ possibleAnswers[2] }}</span>
-      </button>
-      <button id="d" class="item-d" @click="checkAnswer(3)">
-        <span>D: </span><span>{{ possibleAnswers[3] }}</span>
-      </button>
+      <div class="grid">
+        <Answer
+          @click="checkAnswer(0)"
+          :choice="A"
+          :possibleAnswer="possibleAnswers[0]"
+        />
+        <Answer
+          @click="checkAnswer(1)"
+          :choice="B"
+          :possibleAnswer="possibleAnswers[1]"
+        />
+        <Answer
+          @click="checkAnswer(2)"
+          :choice="C"
+          :possibleAnswer="possibleAnswers[2]"
+        />
+        <Answer
+          @click="checkAnswer(3)"
+          :choice="D"
+          :possibleAnswer="possibleAnswers[3]"
+        />
+      </div>
     </main>
 
     <aside>
