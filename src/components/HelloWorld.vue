@@ -30,6 +30,7 @@ export default {
       this.isGameOn = !this.isGameOn;
     },
     beginGame() {
+      this.qIndex = -1;
       this.toggleGamePlay();
       this.nextQ();
     },
