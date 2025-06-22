@@ -2,25 +2,6 @@
   display: flex;
 }
 
-.app ul {
-  list-style-type: none;
-  color: #cad622;
-  font-size: 24px;
-  padding-left: 30%;
-}
-
-.app li {
-  margin-top: 10px;
-}
-.app li:nth-child(1),
-li:nth-child(6),
-li:nth-child(11) {
-  color: #fff;
-}
-.app li span {
-  margin-left: 30px;
-}
-
 main {
   display: grid;
   grid-template-columns: 500px 500px 1fr;
@@ -32,11 +13,6 @@ main {
     "question question sidebar"
     "grid grid sidebar"
     "grid grid sidebar";
-}
-
-.active {
-  border-top: 1px solid skyblue;
-  border-bottom: 1px solid skyblue;
 }
 
 .final_answer {
