@@ -103,9 +103,4 @@ export default {
   </div>
 </template>
 
-<style scoped>
-#fifty_fifty {
-  color: white;
-  background-color: white;
-}
-</style>
+<style scoped></style>
