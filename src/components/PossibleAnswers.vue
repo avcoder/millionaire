@@ -12,24 +12,24 @@ export default {
 <template>
   <div class="grid">
     <Answer
-      @click="this.checkAnswerHandler(0)"
+      @click="checkAnswerHandler(0)"
       :choice="A"
-      :possibleAnswer="this.possibleAnswers[0]"
+      :possibleAnswer="possibleAnswers[0]"
     />
     <Answer
-      @click="this.checkAnswerHandler(1)"
+      @click="checkAnswerHandler(1)"
       :choice="B"
-      :possibleAnswer="this.possibleAnswers[1]"
+      :possibleAnswer="possibleAnswers[1]"
     />
     <Answer
-      @click="this.checkAnswerHandler(2)"
+      @click="checkAnswerHandler(2)"
       :choice="C"
-      :possibleAnswer="this.possibleAnswers[2]"
+      :possibleAnswer="possibleAnswers[2]"
     />
     <Answer
-      @click="this.checkAnswerHandler(3)"
+      @click="checkAnswerHandler(3)"
       :choice="D"
-      :possibleAnswer="this.possibleAnswers[3]"
+      :possibleAnswer="possibleAnswers[3]"
     />
   </div>
 </template>

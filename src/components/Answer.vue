@@ -6,7 +6,7 @@ export default {
 
 <template>
   <button class="answer">
-    <span>{{ this.choice }} </span><span>{{ this.possibleAnswer }}</span>
+    <span>{{ choice }} </span><span>{{ possibleAnswer }}</span>
   </button>
 </template>
 

@@ -15,7 +15,7 @@ export default {
     PossibleAnswers,
     Levels,
   },
-  props: ["api", "money", "questions"],
+  props: ["api", "questions"],
   data() {
     return {
       isGameOn: false,
@@ -72,14 +72,14 @@ export default {
       <Question :question="currentQ" />
 
       <PossibleAnswers
-        :possibleAnswers="this.possibleAnswers"
-        :checkAnswerHandler="this.checkAnswer"
+        :possibleAnswers="possibleAnswers"
+        :checkAnswerHandler="checkAnswer"
       />
     </main>
 
     <aside>
       <AskHelp />
-      <Levels :qIndex="qIndex" :levels="money" />
+      <Levels :qIndex="qIndex" :questions="questions" />
     </aside>
   </div>
 </template>

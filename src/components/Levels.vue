@@ -1,12 +1,23 @@
 <script>
 export default {
-  props: ["qIndex", "levels"],
+  props: ["qIndex", "questions"],
+  computed: {
+    reversedQuestions() {
+      return this.questions.reverse();
+    },
+  },
 };
 </script>
 
 <template>
+  <h3>{{ qIndex }}</h3>
   <ul class="levels">
-    <li v-for="{ level, amount } in levels">{{ level }} - ${{ amount }}</li>
+    <li
+      v-for="({ level, amount }, index) in reversedQuestions"
+      :class="{ active: qIndex + 1 === Number(level) }"
+    >
+      {{ level }} - ${{ amount }}
+    </li>
   </ul>
 </template>
 
