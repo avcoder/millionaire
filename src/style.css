@@ -39,15 +39,6 @@ main {
   border-bottom: 1px solid skyblue;
 }
 
-.grid {
-  grid-area: grid;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: space-evenly;
-  gap: 20px;
-}
-
 .final_answer {
   background: #709634 !important;
 }

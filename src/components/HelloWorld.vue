@@ -4,14 +4,14 @@ import { getRandomInt, decodeQ } from "./utils.ts";
 
 // components
 import Question from "./Question.vue";
-import Answer from "./Answer.vue";
 import AskHelp from "./AskHelp.vue";
+import PossibleAnswers from "./PossibleAnswers.vue";
 
 export default {
   components: {
     Question,
-    Answer,
     AskHelp,
+    PossibleAnswers,
   },
   props: ["api", "money", "questions"],
   data() {
@@ -69,28 +69,10 @@ export default {
     <main>
       <Question :question="currentQ" />
 
-      <div class="grid">
-        <Answer
-          @click="checkAnswer(0)"
-          :choice="A"
-          :possibleAnswer="possibleAnswers[0]"
-        />
-        <Answer
-          @click="checkAnswer(1)"
-          :choice="B"
-          :possibleAnswer="possibleAnswers[1]"
-        />
-        <Answer
-          @click="checkAnswer(2)"
-          :choice="C"
-          :possibleAnswer="possibleAnswers[2]"
-        />
-        <Answer
-          @click="checkAnswer(3)"
-          :choice="D"
-          :possibleAnswer="possibleAnswers[3]"
-        />
-      </div>
+      <PossibleAnswers
+        :possibleAnswers="this.possibleAnswers"
+        :checkAnswerHandler="this.checkAnswer"
+      />
     </main>
 
     <aside>
@@ -102,5 +84,3 @@ export default {
     </aside>
   </div>
 </template>
-
-<style scoped></style>
