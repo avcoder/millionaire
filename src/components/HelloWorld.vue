@@ -6,12 +6,14 @@ import { getRandomInt, decodeQ } from "./utils.ts";
 import Question from "./Question.vue";
 import AskHelp from "./AskHelp.vue";
 import PossibleAnswers from "./PossibleAnswers.vue";
+import Levels from "./Levels.vue";
 
 export default {
   components: {
     Question,
     AskHelp,
     PossibleAnswers,
+    Levels,
   },
   props: ["api", "money", "questions"],
   data() {
@@ -77,10 +79,7 @@ export default {
 
     <aside>
       <AskHelp />
-
-      <ul>
-        <li v-for="{ level, amount } in money">{{ level }} - ${{ amount }}</li>
-      </ul>
+      <Levels :qIndex="qIndex" :levels="money" />
     </aside>
   </div>
 </template>
