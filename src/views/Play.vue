@@ -1,12 +1,12 @@
 <script>
 // utils
-import { getRandomInt, decodeQ } from "./utils.ts";
+import { getRandomInt, decodeQ } from "@/views/utils.ts";
 
 // components
-import Question from "./Question.vue";
-import AskHelp from "./AskHelp.vue";
-import PossibleAnswers from "./PossibleAnswers.vue";
-import Levels from "./Levels.vue";
+import Question from "@/components/Question.vue";
+import AskHelp from "@/components/AskHelp.vue";
+import PossibleAnswers from "@/components/PossibleAnswers.vue";
+import Levels from "@/components/Levels.vue";
 
 export default {
   components: {
@@ -67,8 +67,7 @@ export default {
 </script>
 
 <template>
-  <button @click="beginGame" v-if="!isGameOn">Play</button>
-  <div class="app" v-else>
+  <div class="app">
     <main>
       <Question :question="currentQ" />
 

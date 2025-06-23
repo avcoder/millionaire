@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import Play from "@/components/Play.vue";
 
 const money = [
   { level: "1", amount: "100" },
@@ -179,7 +179,7 @@ const rawQuestions = [
   },
 ];
 
-const questions = rawQuestions.map((q, i) => ({ ...q, ...money[i] }));
+const questions = rawQuestions.map((q, i) => ({ ...q, ...money[i] })).reverse();
 console.log("questions: ", questions);
 const api =
   "https://opentdb.com/api.php?amount=15&category=18&type=multiple&encode=url3986";
@@ -195,7 +195,19 @@ const api =
 </script>
 
 <template>
-  <HelloWorld :api="api" :questions="questions" />
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/play">Play</router-link>
+      <router-link to="/vote">Vote</router-link>
+    </nav>
+    <router-view />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+nav {
+  display: flex;
+  gap: 10px;
+}
+</style>

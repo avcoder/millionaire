@@ -1,5 +1,5 @@
 <script>
-import Answer from "./Answer.vue";
+import Answer from "@/components//Answer.vue";
 
 export default {
   components: {

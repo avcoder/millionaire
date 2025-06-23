@@ -1,11 +1,6 @@
 <script>
 export default {
   props: ["qIndex", "questions"],
-  computed: {
-    reversedQuestions() {
-      return this.questions.reverse();
-    },
-  },
 };
 </script>
 
@@ -13,7 +8,7 @@ export default {
   <h3>{{ qIndex }}</h3>
   <ul class="levels">
     <li
-      v-for="({ level, amount }, index) in reversedQuestions"
+      v-for="({ level, amount }, index) in questions"
       :class="{ active: qIndex + 1 === Number(level) }"
     >
       {{ level }} - ${{ amount }}
