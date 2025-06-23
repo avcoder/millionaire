@@ -13,22 +13,22 @@ export default {
   <div class="grid">
     <Answer
       @click="checkAnswerHandler(0)"
-      :choice="A"
+      choice="A"
       :possibleAnswer="possibleAnswers[0]"
     />
     <Answer
       @click="checkAnswerHandler(1)"
-      :choice="B"
+      choice="B"
       :possibleAnswer="possibleAnswers[1]"
     />
     <Answer
       @click="checkAnswerHandler(2)"
-      :choice="C"
+      choice="C"
       :possibleAnswer="possibleAnswers[2]"
     />
     <Answer
       @click="checkAnswerHandler(3)"
-      :choice="D"
+      choice="D"
       :possibleAnswer="possibleAnswers[3]"
     />
   </div>

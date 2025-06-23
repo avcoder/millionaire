@@ -1,6 +1,6 @@
 <script>
 // utils
-import { getRandomInt, decodeQ, money } from "@/views/utils.ts";
+import { getRandomInt, decodeQ, money } from "@/views/utils/utils.ts";
 
 // components
 import Question from "@/components/Question.vue";
