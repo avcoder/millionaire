@@ -6,7 +6,7 @@ export default {
 
 <template>
   <button class="answer">
-    <span>{{ choice }}:</span> <span>{{ possibleAnswer }}</span>
+    <span class="choice">{{ choice }}:</span> <span>{{ possibleAnswer }}</span>
   </button>
 </template>
 
@@ -30,5 +30,9 @@ export default {
 
 .answer span {
   color: #fff;
+}
+
+.answer .choice {
+  color: orange;
 }
 </style>
