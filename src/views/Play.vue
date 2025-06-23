@@ -1,6 +1,11 @@
 <script>
 // utils
-import { getRandomInt, decodeQ, money } from "@/views/utils/utils.ts";
+import {
+  getRandomInt,
+  decodeQ,
+  money,
+  backupQuestions,
+} from "@/views/utils/utils.ts";
 
 // components
 import Question from "@/components/Question.vue";
@@ -15,17 +20,23 @@ export default {
     PossibleAnswers,
     Levels,
   },
-  async mounted() {
+  mounted() {
     const getData = async () => {
       const API =
         "https://opentdb.com/api.php?amount=15&category=18&type=multiple&encode=url3986";
 
       try {
         const res = await fetch(API);
+        if (!res.ok) {
+          this.questions = [...backupQuestions];
+          this.nextQ();
+          return;
+        }
+
         const data = await res.json();
-        this.questions = data.results
-          .map((q, i) => ({ ...q, ...money[i] }))
-          .reverse();
+        this.questions = data?.results
+          ?.map((q, i) => ({ ...q, ...money[i] }))
+          ?.reverse();
         this.nextQ();
       } catch (e) {
         console.log("Error fetching data: ", e);
