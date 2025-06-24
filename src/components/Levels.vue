@@ -5,7 +5,6 @@ export default {
 </script>
 
 <template>
-  <h3>{{ qIndex }}</h3>
   <ul class="levels">
     <li
       v-for="({ level, amount }, index) in questions"
