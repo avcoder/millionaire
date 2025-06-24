@@ -1,5 +1,15 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <button @click="goPlay">Play</button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    goPlay() {
+      this.$router.push("/play");
+    },
+  },
+};
+</script>

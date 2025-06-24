@@ -185,3 +185,33 @@ export const backupQuestions = [
 ]
   .map((q, i) => ({ ...q, ...money[i] }))
   .reverse();
+
+export const music = {
+  music: new Audio("/sounds/Round1.ogg"),
+  init: function () {
+    this.music.loop = true;
+    this.music.play();
+  },
+  check: function (level: number) {
+    if (level === 5) {
+      this.music.pause();
+      this.music = new Audio("/sounds/Round2.ogg");
+      this.music.loop = true;
+      this.music.play();
+    } else if (level === 10) {
+      this.music.pause();
+      this.music = new Audio("/sounds/Round3.ogg");
+      this.music.loop = true;
+      this.music.play();
+    }
+  },
+  correct: function () {
+    const fx = new Audio("/sounds/RightAnswerShort.ogg");
+    fx.play();
+  },
+  end: function () {
+    const fx = new Audio("/sounds/WrongAnswer.ogg");
+    this.music.pause();
+    fx.play();
+  },
+};

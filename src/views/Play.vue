@@ -5,6 +5,7 @@ import {
   decodeQ,
   money,
   backupQuestions,
+  music,
 } from "@/views/utils/utils.ts";
 
 // components
@@ -38,6 +39,7 @@ export default {
           ?.map((q, i) => ({ ...q, ...money[i] }))
           ?.reverse();
         this.nextQ();
+        music.init();
       } catch (e) {
         console.log("Error fetching data: ", e);
       }
@@ -54,6 +56,15 @@ export default {
       possibleAnswers: [],
       currentQ: "",
     };
+  },
+  watch: {
+    qIndex(newLevel, oldLevel) {
+      music.check(newLevel);
+
+      if (newLevel > oldLevel && newLevel !== 0) {
+        music.correct();
+      }
+    },
   },
   methods: {
     toggleGamePlay() {
@@ -90,6 +101,8 @@ export default {
         this.nextQ();
       } else {
         this.toggleGamePlay();
+        music.end();
+        this.$router.push("/lost");
       }
     },
   },
